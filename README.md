@@ -21,7 +21,10 @@ Can be found an configured in `configuration.env`.
 2. Hit `CTRL-C` to shut down all containers
 3. Modifications (optional):
    1. Modfiy the files for Hass.io in `hass-config` to your needs
+   2. Copy `Viessmann2Influx\conf\conf.json.sample` to `Viessmann2Influx\conf\conf.json`
+      1. Setup the config file for your ViessmannAPI more info here: https://github.com/DerZwergGimli/Viessmann2Influx.git
 4. Run `docker-compise up -d` to let the containers start run in the background
+
 
 
 ### Externals
