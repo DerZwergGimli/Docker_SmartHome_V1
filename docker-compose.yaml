@@ -48,6 +48,18 @@ services:
       - '8125:8125/udp'
     environment:
       TZ: "Europe/Berlin"
+  
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./hass-config:/config
+      - /etc/localtime:/etc/localtime:ro
+    #restart: unless-stopped
+    #privileged: true
+    #network_mode: host
+    ports:
+      - "8123:8123"
       
 volumes:
   grafana-storage: {}
