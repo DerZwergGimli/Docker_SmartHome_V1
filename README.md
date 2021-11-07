@@ -5,13 +5,14 @@ This is the initial version of a 'Smart Home' container used for data aggregatio
 
 ## Containers:
 
-| Name                  | Type  | Container-Link            | Note                          |
-| ---                   | ---   | ---                       | ---                           |
-| Grafana:latest        | ext.  | http://127.0.0.1:3000/    | visualisaztion                |
-| Chronograf:latest     | ext.  | http://127.0.0.1:8888/    | easy-db-access                |
-| Telegraf:1.18         | ext.  | -                         | System Stats aggregator       |
-| Inlfux:1.18           | ext.  | http://influxdb:8086      | Database                      |
-| homeassistant:latest  | ext.  | http://127.0.0.1:8123     | Hass.io Server                |
+| Name                      | Type  | Container-Link            | Note                              |
+| ---                       | ---   | ---                       | ---                               |
+| Grafana:latest            | ext.  | http://127.0.0.1:3000/    | visualisaztion                    |
+| Chronograf:latest         | ext.  | http://127.0.0.1:8888/    | easy-db-access                    |
+| Telegraf:1.18             | ext.  | -                         | System Stats aggregator           |
+| Inlfux:1.18               | ext.  | http://influxdb:8086      | Database                          |
+| HomeAssistant:latest      | ext.  | http://127.0.0.1:8123     | Hass.io Server                    |
+| viessmannapi-cron:build   | ext.  | -                         | CronJob running Viessmann2Influx  |
 
 [Note: This is for local-host ip addresses are changing when accessing remote!]
 
@@ -29,18 +30,13 @@ Can be found an configured in `configuration.env`.
 4. Run `docker-compise up -d` to let the containers start run in the background
 
 
-
-
-### Externals
-- Grafana
-- Chronograf
-  
-### Internals
-- CronContainer
-  - Viessmann2Influx-Converter
-
 ## Requirements
 - Docker
+- docker-compose
+- Internet Access for viessmann-api (container) 
+
+## Contains:
+- Grafana Dashboards examples
 
 
 ## Testing
