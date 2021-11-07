@@ -1,3 +1,6 @@
 [submodule "docker_corn_python"]
 	path = docker_corn_python
 	url = https://github.com/DerZwergGimli/docker_corn_python.git
+[submodule "Viessmann2Influx"]
+	path = Viessmann2Influx
+	url = https://github.com/DerZwergGimli/Viessmann2Influx.git
