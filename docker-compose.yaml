@@ -60,6 +60,18 @@ services:
     #network_mode: host
     ports:
       - "8123:8123"
+  viessmannapi-cron:
+    build:
+      context: Viessmann2Inlfux/docker
+      dockerfile: Dockerfile
+    image: viessmannapi-cron
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    #environment:
+    #  TZ: "Europe/Berlin"
+  
       
 volumes:
   grafana-storage: {}
