@@ -12,6 +12,7 @@ This is the initial version of a 'Smart Home' container used for data aggregatio
 | Telegraf:1.18         | ext.  | -                         | System Stats aggregator       |
 | Inlfux:1.18           | ext.  | http://influxdb:8086      | Database                      |
 | homeassistant:latest  | ext.  | http://127.0.0.1:8123     | Hass.io Server                |
+
 [Note: This is for local-host ip addresses are changing when accessing remote!]
 
 ## Credentails:
