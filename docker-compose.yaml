@@ -1,0 +1,56 @@
+version: '3.6'
+services:
+  influxdb:
+    image: influxdb:1.8
+    env_file: configuration.env
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      TZ: "Europe/Berlin"
+
+  chronograf:
+    image: chronograf:latest
+    env_file: configuration.env
+    ports:
+      - '8888:8888'
+    volumes:
+      - chronograf-storage:/var/lib/chronograf
+    depends_on:
+      - influxdb
+    environment:
+      TZ: "Europe/Berlin"
+
+  grafana:
+    image: grafana/grafana:latest
+    env_file: configuration.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning
+      - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+    depends_on:
+      - influxdb
+    environment:
+      TZ: "Europe/Berlin"
+  
+  telegraf:
+    image: telegraf:1.18
+    volumes:
+      - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    ports:
+      - '8125:8125/udp'
+    environment:
+      TZ: "Europe/Berlin"
+      
+volumes:
+  grafana-storage: {}
+  influxdb-storage: {}
+  chronograf-storage: {}
+  viessmann-storage: {}
