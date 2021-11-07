@@ -62,7 +62,7 @@ services:
       - "8123:8123"
   viessmannapi-cron:
     build:
-      context: Viessmann2Inlfux/docker
+      context: Viessmann2Influx/docker
       dockerfile: Dockerfile
     image: viessmannapi-cron
     depends_on:
