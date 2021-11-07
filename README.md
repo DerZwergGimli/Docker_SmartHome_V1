@@ -38,3 +38,4 @@ Can be found an configured in `configuration.env`.
 
 ## Testing
 - Testing system was openSUSE Tumbleweed 
+- Target system is a QNAP
