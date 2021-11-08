@@ -35,6 +35,10 @@ Can be found an configured in `configuration.env`.
 - docker-compose
 - Internet Access for viessmann-api (container) 
 
+## Notes
+- Grafana-Image is custom build to enable 'RENDERING'
+- Grafana-Config is located at `grafana/conf/grafana.ini` to 'allow_embedding=true' - modify this file if neseccary
+
 ## Contains:
 - Grafana Dashboards examples
 

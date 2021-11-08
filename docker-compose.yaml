@@ -21,21 +21,26 @@ services:
       - influxdb
     environment:
       TZ: "Europe/Berlin"
-
+  
   grafana:
-    image: grafana/grafana:latest
-    env_file: configuration.env
+  #Custorm build image for enableding rendering!
+    build:
+      context: grafana
+      dockerfile: docker/Dockerfile
+    image: grafana
     ports:
       - '3000:3000'
+    env_file: configuration.env
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana/conf/grafana.ini:/usr/share/grafana/conf/defaults.ini:ro
       - ./grafana/provisioning/:/etc/grafana/provisioning
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
     depends_on:
       - influxdb
     environment:
       TZ: "Europe/Berlin"
-  
+
   telegraf:
     image: telegraf:1.18
     volumes:
@@ -57,8 +62,11 @@ services:
     #restart: unless-stopped
     #privileged: true
     #network_mode: host
+    links:
+      - grafana
     ports:
       - "8123:8123"
+
   viessmannapi-cron:
     build:
       context: Viessmann2Influx/
@@ -76,4 +84,4 @@ volumes:
   grafana-storage: {}
   influxdb-storage: {}
   chronograf-storage: {}
-  viessmann-storage: {}
+  #viessmann-storage: {}
