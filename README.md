@@ -1,9 +1,10 @@
 ![d_smartHome_logo](sdh_logo.png)
 
-# Docker_SmartHome_V1
-This is the initial version of a 'Smart Home' container used for data aggregation 
+! This is the initial version of a 'Smart Home' container used for data aggregation !
 
-## Containers
+! This project is now in a BETA state will be changed after 1 Year of testing !
+
+# Containers
 
 | Name                      | Type  | Container-Link            | Note                              |
 | ---                       | ---   | ---                       | ---                               |
