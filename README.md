@@ -1,9 +1,9 @@
-![d_smartHome_logo](d_smartHome_logo.png)
+![d_smartHome_logo](sdh_logo.png)
 
 # Docker_SmartHome_V1
 This is the initial version of a 'Smart Home' container used for data aggregation 
 
-## Containers:
+## Containers
 
 | Name                      | Type  | Container-Link            | Note                              |
 | ---                       | ---   | ---                       | ---                               |
@@ -16,11 +16,11 @@ This is the initial version of a 'Smart Home' container used for data aggregatio
 
 [Note: This is for local-host ip addresses are changing when accessing remote!]
 
-## Credentails:
+## Credentails
 Can be found an configured in `configuration.env`.
 
 
-## Setup:
+## Setup
 1. Run `docker-compose up` and let the containers come up - to get all the necessaty files for config
 2. Hit `CTRL-C` to shut down all containers
 3. Modifications (optional):
@@ -36,11 +36,9 @@ Can be found an configured in `configuration.env`.
 - Internet Access for viessmann-api (container) 
 
 ## Notes
-### Grafana
+### about:Grafana
 - Grafana-Image is custom build to enable 'RENDERING'
 - Grafana-Config is located at `grafana/conf/grafana.ini` to 'allow_embedding=true' - modify this file if neseccary
-
-## Contains:
 - Grafana Dashboards examples
 
 
