@@ -4,6 +4,12 @@
 
 ! This project is now in a BETA state will be changed after 1 Year of testing !
 
+### Info
+Make sure to clone this repo with the `--recurse-submodules` to get the submodule for exmaple: 
+
+`git clone --recurse-submodules https://github.com/DerZwergGimli/Smart-Docker-Home.git`
+
+
 # Containers
 
 | Name                      | Type  | Container-Link            | Note                              |
