@@ -72,11 +72,11 @@ services:
       context: Viessmann2Influx/
       dockerfile: docker/Dockerfile
     image: viessmannapi-cron
-    entrypoint: /entrypoint.sh
+    #entrypoint: /entrypoint.sh
     volumes:
-      - ./app:/home/app/Viessmann2Influx
-    #  - ./docker/runViessmann.sh:/runViessmann.sh
-    #  - ./docker/watchdog.sh:/watchdog.sh
+    #  - ./Viessmann2Influx/app/:/home/app/Viessmann2Influx
+      - ./Viessmann2Influx/docker/runViessmann.sh:/runViessmann.sh
+      - ./Viessmann2Influx/docker/watchdog.sh:/watchdog.sh
     depends_on:
       - influxdb
     links:
