@@ -91,7 +91,7 @@ datasources:
   # <string> database user, if used
   user: "admin"
   # <string> database name, if used
-  database: "heizung"
+  database: "heating"
   # <bool> enable/disable basic auth
   basicAuth: false
 #  withCredentials:
