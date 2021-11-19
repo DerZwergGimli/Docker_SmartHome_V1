@@ -1,0 +1,3118 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.2.3"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1637260619207,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 56,
+      "panels": [
+        {
+          "datasource": null,
+          "description": "",
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 52,
+          "options": {
+            "content": "# Title\n\n  For markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)\n           ",
+            "mode": "markdown"
+          },
+          "pluginVersion": "8.2.3",
+          "title": "Panel Title",
+          "type": "text"
+        },
+        {
+          "datasource": null,
+          "gridPos": {
+            "h": 12,
+            "w": 9,
+            "x": 0,
+            "y": 5
+          },
+          "id": 144,
+          "options": {
+            "content": "<iframe width=\"640\" height=\"390\" src=\"https://solcast.com/embed.html?v=deu/2021-11-14/1280x720\" frameborder=\"0\" allow=\"autoplay;\" allowfullscreen></iframe>",
+            "mode": "html"
+          },
+          "pluginVersion": "8.2.3",
+          "title": "Panel Title",
+          "type": "text"
+        }
+      ],
+      "title": "Notes",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 22,
+      "panels": [],
+      "title": "Stats",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "index": 0,
+                  "text": "OFF"
+                },
+                "true": {
+                  "index": 1,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 2
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Serial ID$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "Serial ID",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "device.serial",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 0.1
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 4,
+        "y": 2
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Modulation$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "Modulation",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.burners",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_child",
+              "operator": "=",
+              "value": "modulation"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 7,
+        "y": 2
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Runtime Total$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "Runtime Total",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.burners",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_child",
+              "operator": "=",
+              "value": "statistics"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "hours"
+            }
+          ]
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 11,
+        "y": 2
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Burner Starts$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "Burner Starts",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.burners",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_child",
+              "operator": "=",
+              "value": "statistics"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "starts"
+            }
+          ]
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "index": 1,
+                  "text": "not connected"
+                },
+                "true": {
+                  "index": 0,
+                  "text": "connected"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 14,
+        "y": 2
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^API Status$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "API Status",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "logger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "apiStatus_bool"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 7
+      },
+      "id": 44,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^heating\\.boiler.last$/",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.boiler",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"DomesticHotWaterStorageTemperature\") FROM \"viessmann.GazBoiler.Data\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            },
+            {
+              "condition": "AND",
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.boiler.sensors.temperature.commonSupply"
+            }
+          ]
+        }
+      ],
+      "title": "Boiler Supply Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 3,
+        "y": 7
+      },
+      "id": 62,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^last$/",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.boiler",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"DomesticHotWaterStorageTemperature\") FROM \"viessmann.GazBoiler.Data\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            },
+            {
+              "condition": "AND",
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.boiler.temperature"
+            }
+          ]
+        }
+      ],
+      "title": "Boiler Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 6,
+        "y": 7
+      },
+      "id": 27,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.dhw",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.dhw.sensors.temperature.hotWaterStorage"
+            }
+          ]
+        }
+      ],
+      "title": "HotWaterStorage",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 9,
+        "y": 7
+      },
+      "id": 71,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.dhw",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.dhw.temperature.main"
+            }
+          ]
+        }
+      ],
+      "title": "DHW Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 12,
+        "y": 7
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.solar",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"DomesticHotWaterStorageTemperature\") FROM \"viessmann.GazBoiler.Data\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.solar.sensors.temperature.dhw"
+            }
+          ]
+        }
+      ],
+      "title": "Solar DHW  Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 15,
+        "y": 7
+      },
+      "id": 54,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.solar",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.solar.sensors.temperature.collector"
+            }
+          ]
+        }
+      ],
+      "title": "Solar Collector Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 18,
+        "y": 7
+      },
+      "id": 53,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.sensors.temperature.outside"
+            }
+          ]
+        }
+      ],
+      "title": "Outside Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepBefore",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PowerConsumption_Day"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "kwatth"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "GasConsumption_Day"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "m3"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 99,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "alias": "PowerConsumption_Day",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.power",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity",
+              "operator": "=",
+              "value": "currentDay"
+            }
+          ]
+        },
+        {
+          "alias": "GasConsumption_Day",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.gas",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity",
+              "operator": "=",
+              "value": "currentDay"
+            }
+          ]
+        }
+      ],
+      "title": "Consumption Overview",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 35,
+      "panels": [],
+      "title": "HKs",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "id": 65,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^heating\\.circuits.last$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "repeat": "devices",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"DomesticHotWaterStorageTemperature\") FROM \"viessmann.GazBoiler.Data\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "name"
+            }
+          ]
+        }
+      ],
+      "title": "HK $devices",
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 29,
+      "maxPerRow": 3,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^heating\\.circuits.last$/",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "repeat": "devices",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"DomesticHotWaterStorageTemperature\") FROM \"viessmann.GazBoiler.Data\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "sensors.temperature.supply"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "title": "HK $devices Supply Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 0
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "semi-dark-green",
+                  "index": 0,
+                  "text": "OFF"
+                },
+                "off": {
+                  "color": "semi-dark-green",
+                  "index": 3,
+                  "text": "OFF"
+                },
+                "on": {
+                  "color": "semi-dark-orange",
+                  "index": 2,
+                  "text": "ON"
+                },
+                "true": {
+                  "color": "semi-dark-orange",
+                  "index": 1,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 37,
+      "maxPerRow": 3,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "repeat": "devices",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "Mode Active",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "operating.modes.active"
+            }
+          ]
+        },
+        {
+          "alias": "Program Active",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "operating.programs.active"
+            }
+          ]
+        },
+        {
+          "alias": "Pump",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "circulation.pump"
+            }
+          ]
+        },
+        {
+          "alias": "FrostProtection",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_string"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "frostprotection"
+            }
+          ]
+        },
+        {
+          "alias": "DHW State",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_boolean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "operating.modes.dhw"
+            }
+          ]
+        }
+      ],
+      "title": "HK $devices States",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 39,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "8.2.3",
+      "repeat": "devices",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "groupBy": [],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Shift"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "heating.curve"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "shift"
+            }
+          ]
+        },
+        {
+          "groupBy": [],
+          "hide": false,
+          "measurement": "heating.circuits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Slope"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature_branch",
+              "operator": "=~",
+              "value": "/^$devices$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature_child",
+              "operator": "=",
+              "value": "heating.curve"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "slope"
+            }
+          ]
+        }
+      ],
+      "title": "Panel Title",
+      "transformations": [
+        {
+          "id": "concatenate",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Shift",
+                "Slope"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SolarCollectorTemp"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "alias": "SolarCollectorTemp",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.solar",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.solar.sensors.temperature.collector"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "alias": "SolarDHWTemp",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.solar",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.solar.sensors.temperature.dhw"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "alias": "BoilerMain",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.boiler",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.boiler.temperature"
+            }
+          ]
+        },
+        {
+          "alias": "BoilerSupply",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.boiler",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_number"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.boiler.sensors.temperature.commonSupply"
+            }
+          ]
+        },
+        {
+          "alias": "BurnerState",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "heating.burners",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_boolean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity",
+              "operator": "=",
+              "value": "active"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Temperatures",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 53
+      },
+      "id": 24,
+      "panels": [],
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 0,
+        "y": 54
+      },
+      "id": 149,
+      "maxPerRow": 4,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "repeat": "consumption_entities",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "array_index"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "heating.power",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_array.idx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=~",
+              "value": "/^$consumption_entities$/"
+            },
+            {
+              "condition": "AND",
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.power.consumption.total"
+            }
+          ]
+        }
+      ],
+      "title": "Power-consumption  {$consumption_entities}",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "array_index"
+              }
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "array_index",
+                "value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "array_index",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "value",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "100": "$consumption_entities-0",
+              "101": "$consumption_entities-1",
+              "102": "$consumption_entities-2",
+              "103": "$consumption_entities-3",
+              "104": "$consumption_entities-4",
+              "105": "$consumption_entities-5",
+              "106": "$consumption_entities-6",
+              "107": "$consumption_entities-7",
+              "108": "$consumption_entities-8",
+              "109": "$consumption_entities-9",
+              "110": "$consumption_entities-10",
+              "111": "$consumption_entities-11",
+              "112": "$consumption_entities-12"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 0,
+        "y": 66
+      },
+      "id": 84,
+      "maxPerRow": 4,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "repeat": "consumption_entities",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "array_index"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "heating.gas",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value_array.idx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "feature",
+              "operator": "=",
+              "value": "heating.gas.consumption.total"
+            },
+            {
+              "condition": "AND",
+              "key": "entity",
+              "operator": "=~",
+              "value": "/^$consumption_entities$/"
+            }
+          ]
+        }
+      ],
+      "title": "Gas-consumption  {$consumption_entities}",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "array_index"
+              }
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "array_index",
+                "value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "array_index",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "value",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "100": "$consumption_entities-0",
+              "101": "$consumption_entities-1",
+              "102": "$consumption_entities-2",
+              "103": "$consumption_entities-3",
+              "104": "$consumption_entities-4",
+              "105": "$consumption_entities-5",
+              "106": "$consumption_entities-6",
+              "107": "$consumption_entities-7",
+              "108": "$consumption_entities-8",
+              "109": "$consumption_entities-9",
+              "110": "$consumption_entities-10",
+              "111": "$consumption_entities-11",
+              "112": "$consumption_entities-12"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "InfluxDB",
+          "value": "InfluxDB"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "databaseVSM",
+        "options": [],
+        "query": "influxdb",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "SHOW TAG VALUES FROM  \"heating.circuits\" WITH key=\"feature_branch\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "devices",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM  \"heating.circuits\" WITH key=\"feature_branch\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "day",
+            "week",
+            "year",
+            "month"
+          ],
+          "value": [
+            "day",
+            "week",
+            "year",
+            "month"
+          ]
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "consumption_entities",
+        "options": [
+          {
+            "selected": true,
+            "text": "day",
+            "value": "day"
+          },
+          {
+            "selected": true,
+            "text": "week",
+            "value": "week"
+          },
+          {
+            "selected": true,
+            "text": "month",
+            "value": "month"
+          },
+          {
+            "selected": true,
+            "text": "year",
+            "value": "year"
+          }
+        ],
+        "query": "day, week, month, year\n",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "NEW_ViessmannDashboard",
+  "uid": "2XSp_Rcnk",
+  "version": 23
+}
