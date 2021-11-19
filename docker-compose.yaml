@@ -8,6 +8,7 @@ services:
       - '8086:8086'
     volumes:
       - influxdb-storage:/var/lib/influxdb
+      - /etc/localtime:/etc/localtime:ro
     environment:
       TZ: "Europe/Berlin"
 
@@ -19,6 +20,7 @@ services:
       - '8888:8888'
     volumes:
       - chronograf-storage:/var/lib/chronograf
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - influxdb
     environment:
@@ -39,6 +41,7 @@ services:
       - ./grafana/conf/grafana.ini:/usr/share/grafana/conf/defaults.ini:ro
       - ./grafana/provisioning/:/etc/grafana/provisioning
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - influxdb
     environment:
@@ -49,6 +52,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - influxdb
     links:
@@ -82,6 +86,7 @@ services:
     #  - ./Viessmann2Influx/app/:/home/app/Viessmann2Influx
       - ./Viessmann2Influx/docker/runViessmann.sh:/runViessmann.sh
       - ./Viessmann2Influx/docker/watchdog.sh:/watchdog.sh
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - influxdb
     links:
