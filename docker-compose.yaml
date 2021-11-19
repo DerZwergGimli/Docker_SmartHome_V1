@@ -3,6 +3,7 @@ services:
   influxdb:
     image: influxdb:1.8
     env_file: configuration.env
+    restart: unless-stopped
     ports:
       - '8086:8086'
     volumes:
@@ -13,6 +14,7 @@ services:
   chronograf:
     image: chronograf:latest
     env_file: configuration.env
+    restart: unless-stopped
     ports:
       - '8888:8888'
     volumes:
@@ -28,6 +30,7 @@ services:
       context: grafana
       dockerfile: docker/Dockerfile
     image: grafana
+    restart: unless-stopped
     ports:
       - '3000:3000'
     env_file: configuration.env
@@ -43,6 +46,7 @@ services:
 
   telegraf:
     image: telegraf:1.18
+    restart: unless-stopped
     volumes:
       - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
@@ -59,7 +63,7 @@ services:
     volumes:
       - ./hass-config:/config
       - /etc/localtime:/etc/localtime:ro
-    #restart: unless-stopped
+    restart: unless-stopped
     #privileged: true
     #network_mode: host
     links:
@@ -72,6 +76,7 @@ services:
       context: Viessmann2Influx/
       dockerfile: docker/Dockerfile
     image: viessmannapi-cron
+    restart: unless-stopped
     #entrypoint: /entrypoint.sh
     volumes:
     #  - ./Viessmann2Influx/app/:/home/app/Viessmann2Influx
